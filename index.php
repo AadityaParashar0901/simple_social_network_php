@@ -11,8 +11,7 @@
                         background-color: #524133;
                 }
                 .btn-custom {
-                        background-color: #36422e;
-                        color: #96806c;
+                        background-color: #003042ff;
                 }
         </style>
 </head>
@@ -45,7 +44,7 @@
                 console_log("login_status: ".$_SESSION['login_status']);
                 console_log("login_userID: ".$_SESSION['login_userID']);
                 
-                // login, register, logout,  utilities
+                // login, register, logout, utilities
                 function get_login_info() { return $_SESSION['login_status']; }
                 function login($__username, $__password) {
                         global $connection;
@@ -117,7 +116,7 @@
                 }
         ?>
         <?php function showToastMessage($__toast_message) { ?>
-                <div class = "toast show position-fixed mt-3 mx-3 fade" style = "z-index: 10;">
+                <div class = "toast show position-fixed mt-5 mx-3 fade" style = "z-index: 10;">
                         <div class = "toast-header">
                                 <button type = "button" class = "btn btn-close" data-bs-dismiss = "toast"></button>
                         </div>
@@ -148,13 +147,13 @@
                                                 <button type = "button" class = "rounded-4 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal">Add Post</button>
                                         </li>
                                 </ul>
-
                                 <?php if (get_login_info() == "true") { ?>
                                         <ul class = "navbar-nav me-2">
                                                 <li class = "nav-item p-1">
                                                         <button type = "button" class = "rounded-4 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal">Logout</button>
                                                 </li>
                                         </ul>
+                                        
                                 <?php } else { ?>
                                         <ul class = "navbar-nav me-2">
                                                 <li class = "nav-item p-1">
@@ -168,10 +167,10 @@
                                                 </li>
                                         </ul>
                                 <?php } ?>
-                                <?php include "modals.php"; ?>
                         </div>
                 </div>
         </nav>
+        <?php include "modals.php"; ?>
         <div class = "container p-5"></div>
         <!-- posts area -->
         <div class = "container-fluid d-flex justify-content-center align-items-center flex-column" id = "posts_area">
