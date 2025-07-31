@@ -60,7 +60,7 @@
         <?php
                 // php initialize
                 session_start();
-                if (!isset($_SESSION['login_status'])) $_SESSION['login_status'] = "FALSE";
+                if (!isset($_SESSION['login_status'])) $_SESSION['login_status'] = "false";
                 if (!isset($_SESSION['login_userID'])) $_SESSION['login_userID'] = "_";
                 $servername = "localhost";
                 $username = "ssn_user";
