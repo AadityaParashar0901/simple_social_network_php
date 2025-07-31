@@ -10,7 +10,7 @@
                                 Under development
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -26,7 +26,7 @@
                                 Under development
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -53,11 +53,11 @@
                                                 <label for = "add_post_file">Image</label>
                                                 <input type="file" id="add_post_file" name="add_post_file">
                                         </div>
-                                        <button type = "submit" class = "rounded-4 btn btn-success" name = "add_post_button" value = "true">Add Post</button>
+                                        <button type = "submit" class = "rounded-4 btn btn-custom" name = "add_post_button" value = "true">Add Post</button>
                                 </form>
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -72,11 +72,11 @@
                         <div class = "modal-body">
                                 Logout?
                                 <form action = "index.php" method = "post">
-                                        <button type = "submit" class = "mt-3 rounded-4 btn btn-danger w-100" name = "logout_button" value = "true">Yes</button>
+                                        <button type = "submit" class = "mt-3 rounded-4 btn btn-custom w-100" name = "logout_button" value = "true">Yes</button>
                                 </form>
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-success w-100" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom w-100" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -92,7 +92,7 @@
                                 This is a simple social network.
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -116,11 +116,11 @@
                                                 <label for = "login_password">Password</label>
                                                 <div class = "invalid-feedback">Please fill out this field.</div>
                                         </div>
-                                        <button type = "submit" class = "rounded-4 btn btn-success" name = "login_button" value = "true">Login</button>
+                                        <button type = "submit" class = "rounded-4 btn btn-custom" name = "login_button" value = "true">Login</button>
                                 </form>
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -144,11 +144,11 @@
                                                 <label for = "register_password">Password</label>
                                                 <div class = "invalid-feedback">Please fill out this field.</div>
                                         </div>
-                                        <button type = "submit" class = "rounded-4 btn btn-success" name = "register_button" value = "true">Register</button>
+                                        <button type = "submit" class = "rounded-4 btn btn-custom" name = "register_button" value = "true">Register</button>
                                 </form>
                         </div>
                         <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-danger" data-bs-dismiss = "modal">Close</button>
+                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>

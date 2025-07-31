@@ -3,6 +3,7 @@
         <title>Simple Social Network</title>
         <link rel = "stylesheet" href = "bootstrap/bootstrap.min.css">
         <script src = "bootstrap/bootstrap.bundle.min.js"></script>
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_box,help,home,login,logout,menu,person_add,post,post_add">
         <style>
                 :root {
                         --color_1: #78B9B5;
@@ -14,9 +15,9 @@
                         color: #fff;
                 }
                 body {
-                        background-image: linear-gradient(to bottom, var(--color_3), var(--color_4));
+                        background-image: linear-gradient(to right bottom, var(--color_2), var(--color_3), var(--color_4));
                 }
-                .btn-custom {
+                .btn-custom, .btn-custom-toggler {
                         color: #fff;
                         font-size: 20px;
                         transition: background-color 0.2s, transform 0.2s, border 0.2s;
@@ -27,15 +28,31 @@
                 }
                 @media screen and (max-width: 576px) {
                         .btn {
-                                width: 112px;
+                                width: 64px;
+                        }
+                        .modal-dialog * .btn-custom {
+                                width: auto;
+                        }
+                        .navbar {
+                                backdrop-filter: blur(5px);
+                                background-color: #0000007f;
+                        }
+                        .navbar-collapse, .navbar-nav {
+                                display: flex;
+                                flex-wrap: wrap;
+                                flex-direction: row;
                         }
                 }
-                .btn-custom:hover {
+                @media screen and (min-width: 576px) {
+                        .btn-custom-toggler {
+                                display: none;
+                        }
+                }
+                .btn-custom:hover, .btn-custom-toggler {
                         color: #fff;
                         border: 4px solid #003042;
                 }
                 .navbar {
-                        backdrop-filter: blur(5px);
                         z-index: 10;
                 }
                 .card {
@@ -53,6 +70,14 @@
                 .card-footer {
                         background-color: var(--color_3);
                         font-size: 18px;
+                }
+                /* google material images */
+                .material-symbols-rounded {
+                        font-variation-settings:
+                        'FILL' 0,
+                        'wght' 400,
+                        'GRAD' 0,
+                        'opsz' 48
                 }
         </style>
 </head>
@@ -87,21 +112,20 @@
                 function get_login_info() { return $_SESSION['login_status']; }
                 function login($__username, $__password) {
                         global $connection;
-                        $result = $connection->query("select * from users where Username = \"".$__username."\" and Password = \"".$__password."\";");
+                        $result = $connection->query("select * from users where Username = \"".$__username."\";");
                         if ($result->num_rows > 0) {
                                 $row = $result->fetch_assoc();
                                 if ($row["Username"] == $__username && $row["Password"] == $__password) {
                                         $_SESSION['login_status'] = "true";
                                         $_SESSION['login_userID'] = $row["ID"];
                                         $_SESSION['toast_message'] = "Logged In";
-                                        header("Location: index.php");
-                                        return;
                                 } else {
-                                        showToastMessage("User not found");
+                                        $_SESSION['toast_message'] = "Incorrect Password";
                                 };
                         } else {
-                                showToastMessage("User not found");
+                                $_SESSION['toast_message'] = "User not found";
                         }
+                        header("Location: index.php");
                 }
                 function register($__username, $__password) {
                         global $connection;
@@ -112,7 +136,7 @@
                         }
                         $result = $connection->query("insert into users (Username, Password) values (\"".$__username."\", \"".$__password."\");");
                         if ($result === TRUE) {
-                                $_SESSION['toast_message'] = "User Registered and Logged In";
+                                $_SESSION['toast_message'] = "User Registered";
                                 header("Location: index.php");
                         }
                 }
@@ -168,39 +192,39 @@
         <!-- navigation bar -->
         <nav class = "navbar navbar-expand-sm w-100 position-fixed">
                 <div class = "container-fluid">
-                        <button class = "navbar-toggler" type = "button" data-bs-toggle = "collapse" data-bs-target = "#collapsibleNavbar">
-                                <span class = "navbar-toggler-icon"></span>
+                        <button class = "btn btn-custom-toggler" type = "button" data-bs-toggle = "collapse" data-bs-target = "#collapsibleNavbar">
+                                <span class = "material-symbols-rounded">menu</span>
                         </button>
                         <div class = "collapse navbar-collapse rounded-4" id = "collapsibleNavbar">
                                 <ul class = "navbar-nav me-auto">
                                         <li class = "nav-item p-1">
-                                                <a class = "rounded-3 btn btn-custom" href = "index.php">Home</a>
+                                                <a class = "rounded-3 btn btn-custom" href = "index.php"><span class = "material-symbols-rounded">home</span></a>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal">Posts</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal"><span class = "material-symbols-rounded">post</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal">Account</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal"><span class = "material-symbols-rounded">account_box</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal">Add Post</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal"><span class = "material-symbols-rounded">post_add</span></button>
                                         </li>
                                 </ul>
                                 <ul class = "navbar-nav me-2">
                                         <?php if (get_login_info() == "true") { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal">Logout</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal"><span class = "material-symbols-rounded">logout</span></button>
                                                 </li>
                                         <?php } else { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal">Login</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal"><span class = "material-symbols-rounded">login</span></button>
                                                 </li>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal">Register</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal"><span class = "material-symbols-rounded">person_add</span></button>
                                                 </li>
                                         <?php } ?>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal">Help</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal"><span class = "material-symbols-rounded">help</span></button>
                                         </li>
                                 </ul>
                         </div>
