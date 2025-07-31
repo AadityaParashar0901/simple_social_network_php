@@ -9,9 +9,6 @@
                         <div class = "modal-body">
                                 Under development
                         </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
-                        </div>
                 </div>
         </div>
 </div>
@@ -24,9 +21,6 @@
                         </div>
                         <div class = "modal-body">
                                 Under development
-                        </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -45,19 +39,16 @@
                                                 <label for = "add_post_title">Title</label>
                                         </div>
                                         <div class = "mb-3 mt-3 form-floating">
-                                                <textarea class = "form-control" id = "add_post_description" name = "add_post_description" required>
+                                                <textarea class = "form-control" id = "add_post_description" name = "add_post_description">
                                                 </textarea>
                                                 <label for = "add_post_description">Description</label>
                                         </div>
                                         <div class = "mb-3 mt-3">
                                                 <label for = "add_post_file">Image</label>
-                                                <input type="file" id="add_post_file" name="add_post_file">
+                                                <input class = "form-control" type="file" id="add_post_file" name="add_post_file" required>
                                         </div>
-                                        <button type = "submit" class = "rounded-4 btn btn-custom" name = "add_post_button" value = "true">Add Post</button>
+                                        <button type = "submit" class = "rounded-4 btn btn-custom w-100" name = "add_post_button" value = "true">Add Post</button>
                                 </form>
-                        </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -75,9 +66,6 @@
                                         <button type = "submit" class = "mt-3 rounded-4 btn btn-custom w-100" name = "logout_button" value = "true">Yes</button>
                                 </form>
                         </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom w-100" data-bs-dismiss = "modal">Close</button>
-                        </div>
                 </div>
         </div>
 </div>
@@ -90,9 +78,6 @@
                         </div>
                         <div class = "modal-body">
                                 This is a simple social network.
-                        </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
@@ -118,9 +103,6 @@
                                         </div>
                                         <button type = "submit" class = "rounded-4 btn btn-custom" name = "login_button" value = "true">Login</button>
                                 </form>
-                        </div>
-                        <div class = "modal-footer">
-                                <button type = "button" class = "rounded-4 btn btn-custom" data-bs-dismiss = "modal">Close</button>
                         </div>
                 </div>
         </div>
