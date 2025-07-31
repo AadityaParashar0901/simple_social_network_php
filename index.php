@@ -1,17 +1,58 @@
 <html>
 <head>
         <title>Simple Social Network</title>
-        <link rel = "stylesheet" href = "bootstrap.min.css">
-        <script src = "bootstrap.bundle.min.js"></script>
+        <link rel = "stylesheet" href = "bootstrap/bootstrap.min.css">
+        <script src = "bootstrap/bootstrap.bundle.min.js"></script>
         <style>
+                :root {
+                        --color_1: #78B9B5;
+                        --color_2: #0F828C;
+                        --color_3: #065084;
+                        --color_4: #320A6B;
+                }
                 * {
-                        color: #b8a28e
+                        color: #fff;
                 }
                 body {
-                        background-color: #524133;
+                        background-image: linear-gradient(to bottom, var(--color_3), var(--color_4));
                 }
                 .btn-custom {
-                        background-color: #003042ff;
+                        color: #fff;
+                        font-size: 20px;
+                        transition: background-color 0.2s, transform 0.2s, border 0.2s;
+                        background-color: var(--color_3);
+                        padding: 0.5rem;
+                        box-shadow: 4px 4px black;
+                        border: 4px solid #00000000;
+                }
+                @media screen and (max-width: 576px) {
+                        .btn {
+                                width: 112px;
+                        }
+                }
+                .btn-custom:hover {
+                        color: #fff;
+                        border: 4px solid #003042;
+                }
+                .navbar {
+                        backdrop-filter: blur(5px);
+                        z-index: 10;
+                }
+                .card {
+                        background-color: #202020;
+                }
+                .card-header {
+                        background-color: var(--color_1);
+                        color: #000;
+                        font-size: 20px;
+                }
+                .card-body {
+                        background-color: var(--color_2);
+                        font-size: 16px;
+                }
+                .card-footer {
+                        background-color: var(--color_3);
+                        font-size: 18px;
                 }
         </style>
 </head>
@@ -35,8 +76,6 @@
                 $usernamesList = [];
                 while ($username = $usernamesObject->fetch_assoc()) { $usernamesList[$username["ID"]] = $username["Username"]; }
                 $result = $connection->query("select ID from posts order by ID desc limit 1;");
-                if ($result === true) $lastPostID = $result->fetch_assoc()["ID"];
-                else $lastPostID = 0;
 
                 // show last message
                 if (isset($_SESSION['toast_message'])) if ($_SESSION['toast_message'] != "") { showToastMessage($_SESSION['toast_message']); $_SESSION['toast_message'] = ""; }
@@ -135,58 +174,55 @@
                         <div class = "collapse navbar-collapse rounded-4" id = "collapsibleNavbar">
                                 <ul class = "navbar-nav me-auto">
                                         <li class = "nav-item p-1">
-                                                <a class = "rounded-4 btn btn-custom" href = "index.php">Home</a>
+                                                <a class = "rounded-3 btn btn-custom" href = "index.php">Home</a>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-4 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal">Posts</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal">Posts</button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-4 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal">Account</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal">Account</button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-4 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal">Add Post</button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal">Add Post</button>
                                         </li>
                                 </ul>
-                                <?php if (get_login_info() == "true") { ?>
-                                        <ul class = "navbar-nav me-2">
+                                <ul class = "navbar-nav me-2">
+                                        <?php if (get_login_info() == "true") { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-4 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal">Logout</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal">Logout</button>
                                                 </li>
-                                        </ul>
-                                        
-                                <?php } else { ?>
-                                        <ul class = "navbar-nav me-2">
+                                        <?php } else { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-4 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal">Login</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal">Login</button>
                                                 </li>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-4 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal">Register</button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal">Register</button>
                                                 </li>
-                                                <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-4 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal">Help</button>
-                                                </li>
-                                        </ul>
-                                <?php } ?>
+                                        <?php } ?>
+                                        <li class = "nav-item p-1">
+                                                <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal">Help</button>
+                                        </li>
+                                </ul>
                         </div>
                 </div>
         </nav>
         <?php include "modals.php"; ?>
         <div class = "container p-5"></div>
         <!-- posts area -->
-        <div class = "container-fluid d-flex justify-content-center align-items-center flex-column" id = "posts_area">
+        <div class = "container d-flex justify-content-center align-items-center flex-column" id = "posts_area">
         </div>
 
         <!-- draw posts -->
         <?php
-                function drawPost($__username, $__title, $__description, $__likescount, $__imageURL) { ?>
+                function drawPost($__username, $__title, $__description, $__likescount, $__imageURL, $__liked) { ?>
                         <script>
-                                document.getElementById("posts_area").innerHTML += "<div class = \"card w-25 rounded-4 w-50 mt-3 mb-3\"><img class = \"card-img-top w-100 h-100\" src = \"<?php echo $__imageURL ?>\" alt = \"Card Image\"><div class = \"card-header\"><?php echo $__title; ?></div><div class = \"card-body\"><?php echo $__description; ?></div><div class = \"card-footer d-flex justify-content-between\"><p><?php echo $__likescount; ?> likes</p><p><?php echo $__username; ?></p></div></div>";
+                                document.getElementById("posts_area").innerHTML += "<div class = \"card rounded-4 w-75 mt-3 mb-3\"><img class = \"card-img-top w-100 h-100\" src = \"<?php echo $__imageURL ?>\" alt = \"Card Image\"><div class = \"card-header\"><?php echo $__title; ?></div><div class = \"card-body\"><?php echo $__description; ?></div><div class = \"card-footer d-flex justify-content-between\"><p><?php echo $__likescount; ?> likes</p><p><?php echo $__username; ?></p></div></div>";
                         </script>
                 <?php }
                 $result = $connection->query("select * from posts order by ID desc limit 25;");
                 $currentPostsLoaded = 0;
                 while ($row = $result->fetch_assoc()) {
-                        drawPost($usernamesList[$row["UserID"]], $row["PostTitle"], $row["PostDescription"], $row["LikesCount"], $row['FileURL']);
+                        drawPost($usernamesList[$row["UserID"]], $row["PostTitle"], $row["PostDescription"], $row["LikesCount"], $row['FileURL'], false);
                         $currentPostsLoaded++;
                 }
                 if ($currentPostsLoaded == 0) { ?>
