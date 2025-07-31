@@ -3,7 +3,7 @@
         <title>Simple Social Network</title>
         <link rel = "stylesheet" href = "bootstrap/bootstrap.min.css">
         <script src = "bootstrap/bootstrap.bundle.min.js"></script>
-        <link rel = "stylesheet" href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_box,help,home,login,logout,menu,person_add,post,post_add">
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_box,dark_mode,help,home,light_mode,login,logout,menu,person_add,post,post_add">
         <style>
                 :root {
                         --color_1: #78B9B5;
@@ -11,11 +11,9 @@
                         --color_3: #065084;
                         --color_4: #320A6B;
                 }
-                * {
-                        color: #fff;
-                }
                 body {
                         background-image: linear-gradient(to right bottom, var(--color_2), var(--color_3), var(--color_4));
+                        transition: background-color 0.5s;
                 }
                 .btn-custom, .btn-custom-toggler {
                         color: #fff;
@@ -65,10 +63,12 @@
                 }
                 .card-body {
                         background-color: var(--color_2);
+                        color: #fff;
                         font-size: 16px;
                 }
                 .card-footer {
                         background-color: var(--color_3);
+                        color: #fff;
                         font-size: 18px;
                 }
                 /* google material images */
@@ -81,7 +81,7 @@
                 }
         </style>
 </head>
-<body data-bs-theme = "dark">
+<body data-bs-theme = "light">
         <?php
                 // php initialize
                 session_start();
@@ -226,6 +226,9 @@
                                         <li class = "nav-item p-1">
                                                 <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal"><span class = "material-symbols-rounded">help</span></button>
                                         </li>
+                                        <li class = "nav-item p-1">
+                                                <button type = "button" class = "rounded-3 btn btn-custom" onClick = "toggleTheme();"><span class = "material-symbols-rounded" id = 'themeChangeButton'>light_mode</span></button>
+                                        </li>
                                 </ul>
                         </div>
                 </div>
@@ -255,5 +258,28 @@
                         </script>
                 <?php }
         ?>
+        <script>
+                function toggleTheme() {
+                        if (localStorage.getItem('theme') != "dark") {
+                                localStorage.setItem('theme', "dark");
+                                document.getElementsByTagName('body')[0].setAttribute("data-bs-theme", "dark");
+                                document.getElementById('themeChangeButton').innerHTML = "dark_mode";
+                        } else {
+                                localStorage.setItem('theme', "light");
+                                document.getElementsByTagName('body')[0].setAttribute("data-bs-theme", "light");
+                                document.getElementById('themeChangeButton').innerHTML = "light_mode";
+                        }
+                }
+                function setTheme() {
+                        if (localStorage.getItem('theme') != "dark") {
+                                document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', "dark");
+                                document.getElementById('themeChangeButton').innerHTML = "dark_mode";
+                        } else {
+                                document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', "light");
+                                document.getElementById('themeChangeButton').innerHTML = "light_mode";
+                        }
+                }
+                setTheme();
+        </script>
 </body>
 </html>
