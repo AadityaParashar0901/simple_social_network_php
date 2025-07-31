@@ -155,7 +155,7 @@
                 }
         ?>
         <?php function showToastMessage($__toast_message) { ?>
-                <div class = "toast show position-fixed mt-5 mx-3 fade" style = "z-index: 10;">
+                <div class = "toast show position-fixed mt-5 mx-3 fade" style = "z-index: 20;">
                         <div class = "toast-header">
                                 <button type = "button" class = "btn btn-close" data-bs-dismiss = "toast"></button>
                         </div>
