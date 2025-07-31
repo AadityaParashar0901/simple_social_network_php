@@ -16,7 +16,7 @@
         <div class = "modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class = "modal-content">
                         <div class = "modal-header">
-                                <h4 class = "modal-title">Posts</h4>
+                                <h4 class = "modal-title">Welcome <b><?php echo $usernamesList[$_SESSION['login_userID']]; ?></b></h4>
                                 <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
                         </div>
                         <div class = "modal-body">
@@ -61,9 +61,11 @@
                                 <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
                         </div>
                         <div class = "modal-body">
-                                Logout?
                                 <form action = "index.php" method = "post">
-                                        <button type = "submit" class = "mt-3 rounded-4 btn btn-custom w-100" name = "logout_button" value = "true">Yes</button>
+                                        <div class = "d-flex justify-content-around">
+                                                <button type = "submit" class = "mt-3 rounded-4 btn btn-custom" name = "logout_button" value = "true">Logout</button>
+                                                <button type = "button" class = "mt-3 rounded-4 btn btn-custom" data-bs-dismiss = "modal" data-bs-target = "#logoutModal">Cancel</button>
+                                        </div>
                                 </form>
                         </div>
                 </div>
