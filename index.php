@@ -6,18 +6,18 @@
         <link rel = "stylesheet" href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_box,dark_mode,help,home,light_mode,login,logout,menu,person_add,post,post_add">
         <style>
                 :root {
-                        --color_1: #78B9B5;
-                        --color_2: #0F828C;
-                        --color_3: #065084;
-                        --color_4: #320A6B;
-                        --text_color: #fff;
-                }
-                [data-bs-theme="dark"] {
                         --color_1: #FBA297;
                         --color_2: #FDEFB2;
                         --color_3: #FFC8A2;
                         --color_4: #FFB5E8;
                         --text_color: #000;
+                }
+                [data-bs-theme="dark"] {
+                        --color_1: #78B9B5;
+                        --color_2: #0F828C;
+                        --color_3: #065084;
+                        --color_4: #320A6B;
+                        --text_color: #fff;
                 }
                 body {
                         background-image: linear-gradient(to right bottom, var(--color_2), var(--color_3), var(--color_4));
@@ -120,7 +120,7 @@
                 console_log("login_userID: ".$_SESSION['login_userID']);
                 
                 // login, register, logout, utilities
-                function get_login_info() { return $_SESSION['login_status']; }
+                function get_login_status() { return $_SESSION['login_status']; }
                 function login($__username, $__password) {
                         global $connection;
                         $result = $connection->query("select * from users where Username = \"".$__username."\";");
@@ -212,17 +212,17 @@
                                                 <a class = "rounded-3 btn btn-custom" href = "index.php"><span class = "material-symbols-rounded icon-span">home</span></a>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal"><span class = "material-symbols-rounded icon-span">post</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_status() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal"><span class = "material-symbols-rounded icon-span">post</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal"><span class = "material-symbols-rounded icon-span">account_box</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_status() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal"><span class = "material-symbols-rounded icon-span">account_box</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal"><span class = "material-symbols-rounded icon-span">post_add</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_status() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal"><span class = "material-symbols-rounded icon-span">post_add</span></button>
                                         </li>
                                 </ul>
                                 <ul class = "navbar-nav me-2">
-                                        <?php if (get_login_info() == "true") { ?>
+                                        <?php if (get_login_status() == "true") { ?>
                                                 <li class = "nav-item p-1">
                                                         <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal"><span class = "material-symbols-rounded icon-span">logout</span></button>
                                                 </li>
