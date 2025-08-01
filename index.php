@@ -10,13 +10,21 @@
                         --color_2: #0F828C;
                         --color_3: #065084;
                         --color_4: #320A6B;
+                        --text_color: #fff;
+                }
+                [data-bs-theme="dark"] {
+                        --color_1: #FBA297;
+                        --color_2: #FDEFB2;
+                        --color_3: #FFC8A2;
+                        --color_4: #FFB5E8;
+                        --text_color: #000;
                 }
                 body {
                         background-image: linear-gradient(to right bottom, var(--color_2), var(--color_3), var(--color_4));
                         transition: background-color 0.5s;
                 }
                 .btn-custom, .btn-custom-toggler {
-                        color: #fff;
+                        color: var(--text_color);
                         font-size: 20px;
                         transition: background-color 0.2s, transform 0.2s, border 0.2s;
                         background-color: var(--color_3);
@@ -26,7 +34,7 @@
                 }
                 @media screen and (max-width: 576px) {
                         .btn {
-                                width: 64px;
+                                width: 48px;
                         }
                         .modal-dialog * .btn-custom {
                                 width: auto;
@@ -47,7 +55,6 @@
                         }
                 }
                 .btn-custom:hover, .btn-custom-toggler {
-                        color: #fff;
                         border: 4px solid #003042;
                 }
                 .navbar {
@@ -55,6 +62,7 @@
                 }
                 .card {
                         background-color: #202020;
+                        border: 0px;
                 }
                 .card-header {
                         background-color: var(--color_1);
@@ -63,12 +71,12 @@
                 }
                 .card-body {
                         background-color: var(--color_2);
-                        color: #fff;
+                        color: var(--text_color);
                         font-size: 16px;
                 }
                 .card-footer {
                         background-color: var(--color_3);
-                        color: #fff;
+                        color: var(--text_color);
                         font-size: 18px;
                 }
                 /* google material images */
@@ -78,6 +86,9 @@
                         'wght' 400,
                         'GRAD' 0,
                         'opsz' 48
+                }
+                .icon-span {
+                        color: var(--text_color);
                 }
         </style>
 </head>
@@ -198,36 +209,36 @@
                         <div class = "collapse navbar-collapse rounded-4" id = "collapsibleNavbar">
                                 <ul class = "navbar-nav me-auto">
                                         <li class = "nav-item p-1">
-                                                <a class = "rounded-3 btn btn-custom" href = "index.php"><span class = "material-symbols-rounded">home</span></a>
+                                                <a class = "rounded-3 btn btn-custom" href = "index.php"><span class = "material-symbols-rounded icon-span">home</span></a>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal"><span class = "material-symbols-rounded">post</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#postsModal"><span class = "material-symbols-rounded icon-span">post</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal"><span class = "material-symbols-rounded">account_box</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#accountSettingsModal"><span class = "material-symbols-rounded icon-span">account_box</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal"><span class = "material-symbols-rounded">post_add</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom <?php if (get_login_info() == "false") echo "disabled"; ?>" data-bs-toggle = "modal" data-bs-target = "#addPostModal"><span class = "material-symbols-rounded icon-span">post_add</span></button>
                                         </li>
                                 </ul>
                                 <ul class = "navbar-nav me-2">
                                         <?php if (get_login_info() == "true") { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal"><span class = "material-symbols-rounded">logout</span></button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#logoutModal"><span class = "material-symbols-rounded icon-span">logout</span></button>
                                                 </li>
                                         <?php } else { ?>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal"><span class = "material-symbols-rounded">login</span></button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#loginModal"><span class = "material-symbols-rounded icon-span">login</span></button>
                                                 </li>
                                                 <li class = "nav-item p-1">
-                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal"><span class = "material-symbols-rounded">person_add</span></button>
+                                                        <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#registerModal"><span class = "material-symbols-rounded icon-span">person_add</span></button>
                                                 </li>
                                         <?php } ?>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal"><span class = "material-symbols-rounded">help</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom" data-bs-toggle = "modal" data-bs-target = "#helpModal"><span class = "material-symbols-rounded icon-span">help</span></button>
                                         </li>
                                         <li class = "nav-item p-1">
-                                                <button type = "button" class = "rounded-3 btn btn-custom" onClick = "toggleTheme();"><span class = "material-symbols-rounded" id = 'themeChangeButton'>light_mode</span></button>
+                                                <button type = "button" class = "rounded-3 btn btn-custom" onClick = "toggleTheme();"><span class = "material-symbols-rounded icon-span" id = 'themeChangeButton'>light_mode</span></button>
                                         </li>
                                 </ul>
                         </div>
@@ -271,12 +282,14 @@
                         }
                 }
                 function setTheme() {
-                        if (localStorage.getItem('theme') != "dark") {
+                        if (localStorage.getItem('theme') != "light") {
                                 document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', "dark");
                                 document.getElementById('themeChangeButton').innerHTML = "dark_mode";
+                                localStorage.setItem('theme', "dark");
                         } else {
                                 document.getElementsByTagName('body')[0].setAttribute('data-bs-theme', "light");
                                 document.getElementById('themeChangeButton').innerHTML = "light_mode";
+                                localStorage.setItem('theme', "light");
                         }
                 }
                 setTheme();
